@@ -126,7 +126,7 @@ def main():
             ball_rect.top = 0
         if ball_rect.bottom > SCREEN_HEIGHT - ball_rect.height:
             ball_accel_y *= -1
-            ball_rect.top = SCREEN_HEIGHT - ball_rect.height
+            ball_rect.bottom = SCREEN_HEIGHT - ball_rect.height
 
         # Paddle Ball collision
         if paddle_1_rect.colliderect(ball_rect) and paddle_1_rect.left < ball_rect.left:
