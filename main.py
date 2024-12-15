@@ -50,9 +50,12 @@ def main():
     while True:
         # Fill BG Black
         screen.fill(COLOR_BLACK)
-
+        
         # Make ball move
         if not started:
+            # Reset the ball
+            ball_rect = pygame.Rect(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, 25, 25)
+
             font = pygame.font.SysFont('Consolas', 30)
 
             # Text on the center of the screen
@@ -121,7 +124,7 @@ def main():
 
         # Check ball out of bounds
         if ball_rect.left <=0 or ball_rect.left >= SCREEN_WIDTH:
-            return
+            started = False
 
         # Ball hits the top and botton
         if ball_rect.top < 0:
