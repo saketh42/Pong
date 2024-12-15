@@ -32,10 +32,4 @@ Perfect for beginners and enthusiasts exploring game development with Python and
     - Player 1: `W` (Up) and `S` (Down)
     - Player 2: Arrow keys (`Up` and `Down`)
 
-## Features to add
-- Scoreboard display to track player progress.
-- Adjustable difficulty through customizable ball speed.
-- Add sound effects for paddle hits and scoring.
-- Implement AI for single-player mode.
-- Introduce power-ups or obstacles for advanced gameplay.
 
