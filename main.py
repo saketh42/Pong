@@ -78,6 +78,32 @@ def main():
             # Exit condition
             if event.type == pygame.QUIT:
                 return
+            
+            # Check key press
+            if event.type == pygame.KEYDOWN:
+
+                # Player 1
+                if event.key == pygame.K_w:
+                    paddle_1_move = -0.5        # Go up
+                if event.key == pygame.K_s:
+                    paddle_1_move = 0.5         # Go down
+
+                # Player 2
+                if event.key == pygame.K_UP:
+                    paddle_2_move = -0.5        # Go up
+                if event.key == pygame.K_DOWN:
+                    paddle_2_move = 0.5         # Go down
+
+            # Check for key release
+            if event.type == pygame.KEYUP:
+                # Player 1 stop moving
+                if event.key == pygame.K_w or event.key == pygame.K_s:
+                    paddle_1_move = 0
+                
+                # Player 2 stop moving 
+                if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
+                    paddle_2_move = 0
+
 
         # Display Player 1 and Player 2
         pygame.draw.rect(screen, COLOR_WHITE, paddle_1_rect)
@@ -111,9 +137,14 @@ def main():
             ball_accel_x *= -1
             ball_rect.left -= 5
 
+        # Ball Movement
         if started:
             ball_rect.left += ball_accel_x * delta_time
             ball_rect.top += ball_accel_y * delta_time
+
+        # Paddle Movement
+        paddle_1_rect.top += paddle_1_move * delta_time
+        paddle_2_rect.top += paddle_2_move * delta_time
 
 
 if __name__ == "__main__":
