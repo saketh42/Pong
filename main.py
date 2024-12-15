@@ -90,10 +90,33 @@ def main():
         pygame.display.update()
         delta_time = clock.tick(60)
 
-        
+        # Check ball out of bounds
+        if ball_rect.left <=0 or ball_rect.left >= SCREEN_WIDTH:
+            return
 
-    if __name__ == "__main__":
-        main()
-main()
+        # Ball hits the top and botton
+        if ball_rect.top < 0:
+            ball_accel_y *= -1
+            ball_rect.top = 0
+        if ball_rect.bottom > SCREEN_HEIGHT - ball_rect.height:
+            ball_accel_y *= -1
+            ball_rect.top = SCREEN_HEIGHT - ball_rect.height
+
+        # Paddle Ball collision
+        if paddle_1_rect.colliderect(ball_rect) and paddle_1_rect.left < ball_rect.left:
+            ball_accel_x *= -1
+            ball_rect.left += 5
+
+        if paddle_2_rect.colliderect(ball_rect) and paddle_2_rect.left > ball_rect.left:
+            ball_accel_x *= -1
+            ball_rect.left -= 5
+
+        if started:
+            ball_rect.left += ball_accel_x * delta_time
+            ball_rect.top += ball_accel_y * delta_time
+
+
+if __name__ == "__main__":
+    main()
 
 
