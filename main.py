@@ -73,6 +73,9 @@ def main():
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_SPACE:
                         started = True
+                        
+
+            continue            # Skips rest of the loop till game starts
 
         for event in pygame.event.get():
             # Exit condition
