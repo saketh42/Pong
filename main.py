@@ -73,7 +73,7 @@ def main():
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_SPACE:
                         started = True
-                        
+
 
             continue            # Skips rest of the loop till game starts
 
@@ -148,6 +148,17 @@ def main():
         # Paddle Movement
         paddle_1_rect.top += paddle_1_move * delta_time
         paddle_2_rect.top += paddle_2_move * delta_time
+
+        # Check Paddle out of bounds
+        if paddle_1_rect.top < 0:
+            paddle_1_rect.top = 0
+        if paddle_1_rect.bottom > SCREEN_HEIGHT:
+            paddle_1_rect.bottom = SCREEN_HEIGHT
+
+        if paddle_2_rect.top < 0:
+            paddle_2_rect.top = 0
+        if paddle_2_rect.bottom > SCREEN_HEIGHT:
+            paddle_2_rect.bottom = SCREEN_HEIGHT
 
 
 if __name__ == "__main__":
