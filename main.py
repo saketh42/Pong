@@ -40,11 +40,39 @@ def main():
     if random.randint(1, 2) == 1:
         ball_accel_y *= -1
 
+    # Clock to keep track of time
+    clock = pygame.time.Clock()
+
+    # Flag for Game starting
+    started = False
 
     # Game loop
     while True:
         # Fill BG Black
         screen.fill(COLOR_BLACK)
+
+        # Make ball move
+        if not started:
+            font = pygame.font.SysFont('Consolas', 30)
+
+            # Text on the center of the screen
+            text = font.render("Press Space to Start...", True, COLOR_WHITE)
+            text_rect = text.get_rect()
+            text_rect.center = (SCREEN_HEIGHT//2, SCREEN_HEIGHT//2)
+            screen.blit(text, text_rect)
+
+            # Update the display
+            pygame.display.flip()
+
+            clock.tick(60)
+
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    return
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_SPACE:
+                        started = True
 
         for event in pygame.event.get():
             # Exit condition
@@ -60,11 +88,12 @@ def main():
 
         # Display update
         pygame.display.update()
+        delta_time = clock.tick(60)
 
+        
 
     if __name__ == "__main__":
         main()
-
-
+main()
 
 
